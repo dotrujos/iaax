@@ -12,6 +12,16 @@
     <xs:element name="infrastructure">
         <xs:complexType>
             <xs:sequence>
+
+                <xs:element name="provider" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="source" type="xs:string" />
+                            <xs:element name="version" type="xs:string" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
                 <xs:element name="vpc" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
@@ -48,12 +58,14 @@
                                     <xs:attribute name="name" type="xs:string" use="required" />
                                 </xs:complexType>
                             </xs:element>
+
                         </xs:sequence>
                         <xs:attribute name="cidr" type="xs:string" use="required" />
                         <xs:attribute name="region" type="xs:string" use="required" />
                         <xs:attribute name="name" type="xs:string" use="required" />
                     </xs:complexType>
                 </xs:element>
+
             </xs:sequence>
         </xs:complexType>
     </xs:element>
