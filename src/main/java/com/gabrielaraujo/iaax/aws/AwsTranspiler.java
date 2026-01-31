@@ -49,20 +49,7 @@ public class AwsTranspiler {
             hcl.append("}\n\n");
 
             if (!vpc.getSubnets().isEmpty()) {
-                for (Subnet subnet : vpc.getSubnets()) {
-                    hcl.append("resource \"aws_subnet\" \"").append(subnet.getName()).append("\" {\n")
-                            .append("vpc_id = aws_vpc.").append(vpc.getName()).append(".id\n")
-                            .append("cidr_block = \"").append(subnet.getCidr()).append("\"\n");
-                    if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
-                        hcl.append("provider = aws.").append(vpc.getAlias()).append("\n");
-                    }
-
-                    if (subnet.getTags() != null && !subnet.getTags().isEmpty()) {
-                        AwsTagsTranspiler.transpile(hcl, subnet.getTags());
-                    }
-
-                    hcl.append("}\n\n");
-                }
+                AwsSubnetsTranspiler.transpile(hcl, vpc);
             }
 
             if (vpc.getVms() != null && !vpc.getVms().isEmpty()) {
