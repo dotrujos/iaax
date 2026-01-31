@@ -66,26 +66,7 @@ public class AwsTranspiler {
             }
 
             if (vpc.getVms() != null && !vpc.getVms().isEmpty()) {
-                for (EC2 ec2 : vpc.getVms()) {
-                    hcl.append("resource \"aws_instance\" \"").append(ec2.getName()).append("\" { \n")
-                            .append("instance_type = \"").append(ec2.getInstanceType()).append("\"\n")
-                            .append("ami = \"").append(ec2.getAmi()).append("\"\n");
-
-                    if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
-                        hcl.append("provider = aws.").append(vpc.getAlias()).append("\n\n");
-                    }
-
-                    if (ec2.getSubnetName() != null && !ec2.getSubnetName().isEmpty()) {
-                        hcl.append("subnet_id = aws_subnet.").append(ec2.getSubnetName()).append(".id");
-                        hcl.append("\n");
-                    }
-
-                    if (ec2.getTags() != null && !ec2.getTags().isEmpty()) {
-                        AwsTagsTranspiler.transpile(hcl, ec2.getTags());
-                    }
-
-                    hcl.append("}\n\n");
-                }
+                AwsInstancesTranspiler.transpile(hcl, vpc.getVms(), vpc.getAlias());
             }
         }
         return hcl.toString();
