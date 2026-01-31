@@ -15,4 +15,7 @@ public class Infrastructure {
     @JacksonXmlProperty(localName = "vpc", namespace = "aws")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<Vpc> vpcs;
+
+    @JacksonXmlProperty(localName = "provider", namespace = "aws")
+    private Provider provider;
 }
