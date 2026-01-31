@@ -17,7 +17,7 @@ public class AwsTranspiler {
         var xmlMapper = new XmlMapper();
         var file = new File(filePath);
 
-        Infrastructure infra = xmlMapper.readValue(file, Infrastructure.class);
+        AwsInfrastructure infra = xmlMapper.readValue(file, AwsInfrastructure.class);
         Provider provider = infra.getProvider();
 
         var hcl = new StringBuilder();

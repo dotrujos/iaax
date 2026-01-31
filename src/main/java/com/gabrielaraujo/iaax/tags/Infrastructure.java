@@ -12,10 +12,10 @@ import java.util.List;
 @Getter
 @Setter
 @JacksonXmlRootElement(localName = "infrastructure", namespace = "iaax")
-public class Infrastructure {
+public class Infrastructure<VPC extends Object> {
     @JacksonXmlProperty(localName = "vpc", namespace = "aws")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<Vpc> vpcs;
+    private List<VPC> vpcs;
 
     @JacksonXmlProperty(localName = "provider", namespace = "iaax")
     private Provider provider;
