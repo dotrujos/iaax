@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="gabrielaraujo.com/aws/schema.xsd"
+           xmlns:aws="gabrielaraujo.com/aws/schema.xsd"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="tagType">
+        <xs:attribute name="key" type="xs:string" use="required" />
+        <xs:attribute name="value" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:element name="infrastructure">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vpc" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="subnets">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="subnet" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="tag" type="aws:tagType" minOccurs="0" />
+                                                </xs:sequence>
+                                                <xs:attribute name="name" type="xs:string" use="required" />
+                                                <xs:attribute name="cidr" type="xs:string" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="ec2" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="instance-type" type="xs:string" />
+                                        <xs:element name="ami" type="xs:string" />
+                                        <xs:element name="subnet-name" type="xs:string" />
+                                        <xs:element name="tags">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="tag" type="aws:tagType" maxOccurs="unbounded" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="cidr" type="xs:string" use="required" />
+                        <xs:attribute name="region" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
