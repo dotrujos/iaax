@@ -31,18 +31,31 @@ public class AwsTranspiler {
 
         for (Vpc vpc : infra.getVpcs()) {
             hcl.append("provider \"aws\" {\n")
-                    .append("  region = \"").append(vpc.getRegion()).append("\"\n")
-                    .append("}\n\n");
+                    .append("region = \"").append(vpc.getRegion()).append("\"\n");
+
+            if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
+                hcl.append("alias = \"").append(vpc.getAlias()).append("\"\n");
+            }
+
+            hcl.append("}\n\n");
 
             hcl.append("resource \"aws_vpc\" \"").append(vpc.getName()).append("\"{\n")
-                    .append("  cidr_block = \"").append(vpc.getCidr()).append("\"\n")
-                    .append("}\n\n");
+                    .append("cidr_block = \"").append(vpc.getCidr()).append("\"\n");
+
+            if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
+                hcl.append("provider = aws.").append(vpc.getAlias()).append("\n");
+            }
+
+            hcl.append("}\n\n");
 
             if (!vpc.getSubnets().isEmpty()) {
                 for (Subnet subnet : vpc.getSubnets()) {
                     hcl.append("resource \"aws_subnet\" \"").append(subnet.getName()).append("\" {\n")
                             .append("vpc_id = aws_vpc.").append(vpc.getName()).append(".id\n")
                             .append("cidr_block = \"").append(subnet.getCidr()).append("\"\n");
+                    if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
+                        hcl.append("provider = aws.").append(vpc.getAlias()).append("\n");
+                    }
 
                     if (subnet.getTags() != null && !subnet.getTags().isEmpty()) {
                         AwsTagsTranspiler.transpile(hcl, subnet.getTags());
@@ -56,7 +69,11 @@ public class AwsTranspiler {
                 for (EC2 ec2 : vpc.getVms()) {
                     hcl.append("resource \"aws_instance\" \"").append(ec2.getName()).append("\" { \n")
                             .append("instance_type = \"").append(ec2.getInstanceType()).append("\"\n")
-                            .append("ami = \"").append(ec2.getAmi()).append("\"\n\n");
+                            .append("ami = \"").append(ec2.getAmi()).append("\"\n");
+
+                    if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
+                        hcl.append("provider = aws.").append(vpc.getAlias()).append("\n\n");
+                    }
 
                     if (ec2.getSubnetName() != null && !ec2.getSubnetName().isEmpty()) {
                         hcl.append("subnet_id = aws_subnet.").append(ec2.getSubnetName()).append(".id");

@@ -1,5 +1,6 @@
 package com.gabrielaraujo.iaax.aws.tags;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -27,4 +28,8 @@ public class Vpc {
 
     @JacksonXmlProperty(isAttribute = true)
     private String name;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JacksonXmlProperty(isAttribute = true)
+    private String alias;
 }

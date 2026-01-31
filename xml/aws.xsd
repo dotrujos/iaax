@@ -60,6 +60,7 @@
                             </xs:element>
 
                         </xs:sequence>
+                        <xs:attribute name="alias" type="xs:string" />
                         <xs:attribute name="cidr" type="xs:string" use="required" />
                         <xs:attribute name="region" type="xs:string" use="required" />
                         <xs:attribute name="name" type="xs:string" use="required" />

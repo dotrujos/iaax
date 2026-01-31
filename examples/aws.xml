@@ -3,7 +3,7 @@
         <aws:source>hashicorp/aws</aws:source>
         <aws:version>~> 5.0</aws:version>
     </aws:provider>
-    <aws:vpc cidr="10.0.0.0/24" region="us-east-1" name="vpc_prd">
+    <aws:vpc cidr="10.0.0.0/24" region="us-east-1" name="vpc_prd" alias="us_east">
         <aws:subnets>
             <aws:subnet name="public_subnet" cidr="10.0.1.0/24" />
             <aws:subnet name="private_subnet" cidr="10.0.10.0/24">
