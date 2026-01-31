@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <aws:infrastructure xmlns:aws="gabrielaraujo.com/iaax/aws/schema.xsd">
     <aws:provider>
         <aws:source>hashicorp/aws</aws:source>
