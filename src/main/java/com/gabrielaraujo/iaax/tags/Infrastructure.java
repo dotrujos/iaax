@@ -11,12 +11,12 @@ import java.util.List;
 
 @Getter
 @Setter
-@JacksonXmlRootElement(localName = "infrastructure", namespace = "aws")
+@JacksonXmlRootElement(localName = "infrastructure", namespace = "iaax")
 public class Infrastructure {
     @JacksonXmlProperty(localName = "vpc", namespace = "aws")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<Vpc> vpcs;
 
-    @JacksonXmlProperty(localName = "provider", namespace = "aws")
+    @JacksonXmlProperty(localName = "provider", namespace = "iaax")
     private Provider provider;
 }
