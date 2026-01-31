@@ -9,65 +9,49 @@
         <xs:attribute name="value" type="xs:string" use="required" />
     </xs:complexType>
 
-    <xs:element name="infrastructure">
+    <xs:element name="vpc">
         <xs:complexType>
             <xs:sequence>
 
-                <xs:element name="provider" minOccurs="0">
+                <xs:element name="subnets">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="source" type="xs:string" />
-                            <xs:element name="version" type="xs:string" />
+                            <xs:element name="subnet" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tag" type="aws:tagType" minOccurs="0" />
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                    <xs:attribute name="cidr" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
 
-                <xs:element name="vpc" maxOccurs="unbounded">
+                <xs:element name="ec2" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="subnets">
+                            <xs:element name="instance-type" type="xs:string" />
+                            <xs:element name="ami" type="xs:string" />
+                            <xs:element name="subnet-name" type="xs:string" />
+                            <xs:element name="tags">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="subnet" maxOccurs="unbounded">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element name="tag" type="aws:tagType" minOccurs="0" />
-                                                </xs:sequence>
-                                                <xs:attribute name="name" type="xs:string" use="required" />
-                                                <xs:attribute name="cidr" type="xs:string" use="required" />
-                                            </xs:complexType>
-                                        </xs:element>
+                                        <xs:element name="tag" type="aws:tagType" maxOccurs="unbounded" />
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-
-                            <xs:element name="ec2" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="instance-type" type="xs:string" />
-                                        <xs:element name="ami" type="xs:string" />
-                                        <xs:element name="subnet-name" type="xs:string" />
-                                        <xs:element name="tags">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element name="tag" type="aws:tagType" maxOccurs="unbounded" />
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                    <xs:attribute name="name" type="xs:string" use="required" />
-                                </xs:complexType>
-                            </xs:element>
-
                         </xs:sequence>
-                        <xs:attribute name="alias" type="xs:string" />
-                        <xs:attribute name="cidr" type="xs:string" use="required" />
-                        <xs:attribute name="region" type="xs:string" use="required" />
                         <xs:attribute name="name" type="xs:string" use="required" />
                     </xs:complexType>
                 </xs:element>
 
             </xs:sequence>
+            <xs:attribute name="alias" type="xs:string" />
+            <xs:attribute name="cidr" type="xs:string" use="required" />
+            <xs:attribute name="region" type="xs:string" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required" />
         </xs:complexType>
     </xs:element>
 

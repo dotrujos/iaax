@@ -2,6 +2,8 @@ package com.gabrielaraujo.iaax.aws;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.gabrielaraujo.iaax.aws.tags.*;
+import com.gabrielaraujo.iaax.tags.Infrastructure;
+import com.gabrielaraujo.iaax.tags.Provider;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
