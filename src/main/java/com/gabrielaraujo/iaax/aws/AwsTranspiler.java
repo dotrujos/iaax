@@ -45,13 +45,7 @@ public class AwsTranspiler {
                             .append("cidr_block = \"").append(subnet.getCidr()).append("\"\n");
 
                     if (subnet.getTags() != null && !subnet.getTags().isEmpty()) {
-                        hcl.append("tags = {");
-                        for (Tag tag : subnet.getTags()) {
-                            hcl.append("\n");
-                            hcl.append(tag.getKey()).append(" = \"").append(tag.getValue()).append("\"");
-                        }
-                        hcl.append("\n");
-                        hcl.append("}\n");
+                        AwsTagsTranspiler.transpile(hcl, subnet.getTags());
                     }
 
                     hcl.append("}\n\n");
@@ -70,13 +64,7 @@ public class AwsTranspiler {
                     }
 
                     if (ec2.getTags() != null && !ec2.getTags().isEmpty()) {
-                        hcl.append("tags = {");
-                        for (Tag tag : ec2.getTags()) {
-                            hcl.append("\n");
-                            hcl.append(tag.getKey()).append(" = \"").append(tag.getValue()).append("\"");
-                        }
-                        hcl.append("\n");
-                        hcl.append("}\n");
+                        AwsTagsTranspiler.transpile(hcl, ec2.getTags());
                     }
 
                     hcl.append("}\n\n");
