@@ -1,4 +1,4 @@
-<aws:infrastructure xmlns:aws="gabrielaraujo.com/aws/schema.xsd">
+<aws:infrastructure xmlns:aws="gabrielaraujo.com/iaax/aws/schema.xsd">
     <aws:provider>
         <aws:source>hashicorp/aws</aws:source>
         <aws:version>~> 5.0</aws:version>
