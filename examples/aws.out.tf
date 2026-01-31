@@ -1,4 +1,4 @@
-// Generated at 2026-01-31T04:27:06.995753600-03:00 with IaaX <github.com/dotrujos/iaax>
+// Generated at 2026-01-31T05:09:32.501528900-03:00 with IaaX <github.com/dotrujos/iaax>
 terraform {
 required_providers {
 aws {
@@ -14,7 +14,7 @@ alias = "us_east"
 }
 
 resource "aws_vpc" "vpc_prd"{
-cidr_block = "10.0.0.0/24"
+cidr_block = "10.0.0.0/16"
 provider = aws.us_east
 }
 
@@ -35,7 +35,7 @@ Name = "Private-Subnet-1A"
 
 resource "aws_instance" "web_server_01" { 
 instance_type = "t3.medium"
-ami = "ami-0c101f26f147fa7fd"
+ami = "ami-04b70fa74e45c3917"
 provider = aws.us_east
 
 subnet_id = aws_subnet.public_subnet.id
@@ -47,7 +47,7 @@ Environment = "Dev"
 
 resource "aws_instance" "db_server" { 
 instance_type = "t3.large"
-ami = "ami-0c101f26f147fa7fd"
+ami = "ami-04b70fa74e45c3917"
 provider = aws.us_east
 
 subnet_id = aws_subnet.private_subnet.id

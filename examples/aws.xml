@@ -5,25 +5,29 @@
         <iaax:source>hashicorp/aws</iaax:source>
         <iaax:version>~> 5.0</iaax:version>
     </iaax:provider>
-    <aws:vpc cidr="10.0.0.0/24" region="us-east-1" name="vpc_prd" alias="us_east">
+
+    <aws:vpc cidr="10.0.0.0/16" region="us-east-1" name="vpc_prd" alias="us_east">
         <aws:subnets>
             <aws:subnet name="public_subnet" cidr="10.0.1.0/24" />
+
             <aws:subnet name="private_subnet" cidr="10.0.10.0/24">
                 <aws:tag key="Name" value="Private-Subnet-1A" />
             </aws:subnet>
         </aws:subnets>
+
         <aws:ec2 name="web_server_01">
             <aws:instance-type>t3.medium</aws:instance-type>
-            <aws:ami>ami-0c101f26f147fa7fd</aws:ami>
+            <aws:ami>ami-04b70fa74e45c3917</aws:ami>
             <aws:subnet-name>public_subnet</aws:subnet-name>
             <aws:tags>
                 <aws:tag key="Name" value="MyWebServer" />
                 <aws:tag key="Environment" value="Dev" />
             </aws:tags>
         </aws:ec2>
+
         <aws:ec2 name="db_server">
             <aws:instance-type>t3.large</aws:instance-type>
-            <aws:ami>ami-0c101f26f147fa7fd</aws:ami>
+            <aws:ami>ami-04b70fa74e45c3917</aws:ami>
             <aws:subnet-name>private_subnet</aws:subnet-name>
             <aws:tags>
                 <aws:tag key="Name" value="MyDatabase" />
@@ -32,4 +36,3 @@
         </aws:ec2>
     </aws:vpc>
 </iaax:infrastructure>
-
