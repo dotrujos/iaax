@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @JacksonXmlRootElement(localName = "ec2", namespace = "aws")
-public class EC2 {
+public class AwsInstance {
     @JacksonXmlProperty(isAttribute = true)
     private String name;
 
@@ -27,5 +27,5 @@ public class EC2 {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JacksonXmlProperty(localName = "tags", namespace = "aws")
-    private List<Tag> tags;
+    private List<AwsTag> awsTags;
 }

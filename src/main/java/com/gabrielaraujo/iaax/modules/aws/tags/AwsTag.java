@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JacksonXmlRootElement(localName = "tag", namespace = "aws")
-public class Tag {
+public class AwsTag {
     @JacksonXmlProperty(isAttribute = true)
     private String key;
 

@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @JacksonXmlRootElement(localName = "subnet", namespace = "aws")
-public class Subnet {
+public class AwsSubnet {
     @JacksonXmlProperty(isAttribute = true)
     private String name;
 
@@ -22,5 +22,5 @@ public class Subnet {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JacksonXmlProperty(localName = "tag", namespace = "aws")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<Tag> tags;
+    private List<AwsTag> awsTags;
 }

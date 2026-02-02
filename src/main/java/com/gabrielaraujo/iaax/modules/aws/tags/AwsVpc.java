@@ -12,13 +12,13 @@ import java.util.List;
 @Getter
 @Setter
 @JacksonXmlRootElement(localName = "vpc", namespace = "aws")
-public class Vpc {
+public class AwsVpc {
     @JacksonXmlProperty(localName = "ec2", namespace = "aws")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<EC2> vms;
+    private List<AwsInstance> vms;
 
     @JacksonXmlProperty(localName = "subnets", namespace = "aws")
-    private List<Subnet> subnets;
+    private List<AwsSubnet> awsSubnets;
 
     @JacksonXmlProperty(isAttribute = true)
     private String cidr;

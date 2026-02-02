@@ -3,7 +3,7 @@ package com.gabrielaraujo.iaax;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.gabrielaraujo.iaax.modules.aws.AwsInfrastructure;
 import com.gabrielaraujo.iaax.modules.aws.AwsTranspiler;
-import com.gabrielaraujo.iaax.modules.aws.tags.Vpc;
+import com.gabrielaraujo.iaax.modules.aws.tags.AwsVpc;
 import com.gabrielaraujo.iaax.registries.IaaxVariablesRegistry;
 import com.gabrielaraujo.iaax.tags.Infrastructure;
 
@@ -36,7 +36,7 @@ public class Main {
         var preFile = new File(inputFile);
 
         // TODO: Refactor to dinamyc infrastructure module
-        Infrastructure<Vpc> infra = xmlMapper.readValue(preFile, AwsInfrastructure.class);
+        Infrastructure<AwsVpc> infra = xmlMapper.readValue(preFile, AwsInfrastructure.class);
 
         IaaxVariablesRegistry.SINGLETON.loadVariables(infra);
 

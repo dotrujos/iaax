@@ -1,8 +1,7 @@
 package com.gabrielaraujo.iaax.modules.aws;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.gabrielaraujo.iaax.modules.aws.tags.*;
-import com.gabrielaraujo.iaax.modules.aws.tags.Vpc;
+import com.gabrielaraujo.iaax.modules.aws.tags.AwsVpc;
 import com.gabrielaraujo.iaax.tags.Provider;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -31,31 +30,31 @@ public class AwsTranspiler {
         hcl.append("version = \"").append(provider.getVersion()).append("\"\n");
         hcl.append("}\n}\n}\n\n");
 
-        for (Vpc vpc : infra.getVpcs()) {
+        for (AwsVpc awsVpc : infra.getVpcs()) {
             hcl.append("provider \"aws\" {\n")
-                    .append("region = \"").append(vpc.getRegion()).append("\"\n");
+                    .append("region = \"").append(awsVpc.getRegion()).append("\"\n");
 
-            if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
-                hcl.append("alias = \"").append(vpc.getAlias()).append("\"\n");
+            if (awsVpc.getAlias() != null && !awsVpc.getAlias().isEmpty()) {
+                hcl.append("alias = \"").append(awsVpc.getAlias()).append("\"\n");
             }
 
             hcl.append("}\n\n");
 
-            hcl.append("resource \"aws_vpc\" \"").append(vpc.getName()).append("\"{\n")
-                    .append("cidr_block = \"").append(vpc.getCidr()).append("\"\n");
+            hcl.append("resource \"aws_vpc\" \"").append(awsVpc.getName()).append("\"{\n")
+                    .append("cidr_block = \"").append(awsVpc.getCidr()).append("\"\n");
 
-            if (vpc.getAlias() != null && !vpc.getAlias().isEmpty()) {
-                hcl.append("provider = aws.").append(vpc.getAlias()).append("\n");
+            if (awsVpc.getAlias() != null && !awsVpc.getAlias().isEmpty()) {
+                hcl.append("provider = aws.").append(awsVpc.getAlias()).append("\n");
             }
 
             hcl.append("}\n\n");
 
-            if (!vpc.getSubnets().isEmpty()) {
-                AwsSubnetsTranspiler.transpile(hcl, vpc);
+            if (!awsVpc.getAwsSubnets().isEmpty()) {
+                AwsSubnetsTranspiler.transpile(hcl, awsVpc);
             }
 
-            if (vpc.getVms() != null && !vpc.getVms().isEmpty()) {
-                AwsInstancesTranspiler.transpile(hcl, vpc.getVms(), vpc.getAlias());
+            if (awsVpc.getVms() != null && !awsVpc.getVms().isEmpty()) {
+                AwsInstancesTranspiler.transpile(hcl, awsVpc.getVms(), awsVpc.getAlias());
             }
         }
         return hcl.toString();

@@ -1,6 +1,6 @@
 package com.gabrielaraujo.iaax.modules.aws;
 
-import com.gabrielaraujo.iaax.modules.aws.tags.EC2;
+import com.gabrielaraujo.iaax.modules.aws.tags.AwsInstance;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -8,23 +8,23 @@ import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AwsInstancesTranspiler {
-    public static void transpile(StringBuilder hcl, List<EC2> vms, String alias) {
-        for (EC2 ec2 : vms) {
-            hcl.append("resource \"aws_instance\" \"").append(ec2.getName()).append("\" { \n")
-                    .append("instance_type = \"").append(ec2.getInstanceType()).append("\"\n")
-                    .append("ami = \"").append(ec2.getAmi()).append("\"\n");
+    public static void transpile(StringBuilder hcl, List<AwsInstance> vms, String alias) {
+        for (AwsInstance awsInstance : vms) {
+            hcl.append("resource \"aws_instance\" \"").append(awsInstance.getName()).append("\" { \n")
+                    .append("instance_type = \"").append(awsInstance.getInstanceType()).append("\"\n")
+                    .append("ami = \"").append(awsInstance.getAmi()).append("\"\n");
 
             if (alias != null && !alias.isEmpty()) {
                 hcl.append("provider = aws.").append(alias).append("\n\n");
             }
 
-            if (ec2.getSubnetName() != null && !ec2.getSubnetName().isEmpty()) {
-                hcl.append("subnet_id = aws_subnet.").append(ec2.getSubnetName()).append(".id");
+            if (awsInstance.getSubnetName() != null && !awsInstance.getSubnetName().isEmpty()) {
+                hcl.append("subnet_id = aws_subnet.").append(awsInstance.getSubnetName()).append(".id");
                 hcl.append("\n");
             }
 
-            if (ec2.getTags() != null && !ec2.getTags().isEmpty()) {
-                AwsTagsTranspiler.transpile(hcl, ec2.getTags());
+            if (awsInstance.getAwsTags() != null && !awsInstance.getAwsTags().isEmpty()) {
+                AwsTagsTranspiler.transpile(hcl, awsInstance.getAwsTags());
             }
 
             hcl.append("}\n\n");
