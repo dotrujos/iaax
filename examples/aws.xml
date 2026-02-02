@@ -6,6 +6,10 @@
         <iaax:version>~> 5.0</iaax:version>
     </iaax:provider>
 
+    <iaax:environment>
+        <iaax:variable key="Hello">World</iaax:variable>
+    </iaax:environment>
+
     <aws:vpc cidr="10.0.0.0/16" region="us-east-1" name="vpc_prd" alias="us_east">
         <aws:subnets>
             <aws:subnet name="public_subnet" cidr="10.0.1.0/24" />

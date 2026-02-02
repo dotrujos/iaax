@@ -17,6 +17,9 @@ public class Infrastructure<VPC extends Object> {
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<VPC> vpcs;
 
+    @JacksonXmlProperty(localName = "environment", namespace = "iaax")
+    private Environment environment;
+
     @JacksonXmlProperty(localName = "provider", namespace = "iaax")
     private Provider provider;
 }

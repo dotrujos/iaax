@@ -1,7 +1,13 @@
 package com.gabrielaraujo.iaax;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.gabrielaraujo.iaax.aws.AwsInfrastructure;
 import com.gabrielaraujo.iaax.aws.AwsTranspiler;
+import com.gabrielaraujo.iaax.aws.tags.Vpc;
+import com.gabrielaraujo.iaax.registries.IaaxVariablesRegistry;
+import com.gabrielaraujo.iaax.tags.Infrastructure;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +31,14 @@ public class Main {
             System.err.println("Usage: java com.gabrielaraujo.iaax.Main --file <input-file> --output <output-file>");
             System.exit(1);
         }
+
+        var xmlMapper = new XmlMapper();
+        var preFile = new File(inputFile);
+
+        // TODO: Refactor to dinamyc infrastructure module
+        Infrastructure<Vpc> infra = xmlMapper.readValue(preFile, AwsInfrastructure.class);
+
+        IaaxVariablesRegistry.SINGLETON.loadVariables(infra);
 
         var file = AwsTranspiler.transpile(inputFile);
         Path output = Path.of(outputFile);
