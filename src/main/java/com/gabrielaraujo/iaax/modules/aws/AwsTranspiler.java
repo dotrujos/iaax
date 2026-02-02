@@ -12,9 +12,8 @@ import java.time.OffsetDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AwsTranspiler {
-    public static String transpile(String filePath) throws IOException {
+    public static String transpile(File file) throws IOException {
         var xmlMapper = new XmlMapper();
-        var file = new File(filePath);
 
         AwsInfrastructure infra = xmlMapper.readValue(file, AwsInfrastructure.class);
         Provider provider = infra.getProvider();
