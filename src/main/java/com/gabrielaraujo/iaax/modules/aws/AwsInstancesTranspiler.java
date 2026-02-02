@@ -1,6 +1,6 @@
-package com.gabrielaraujo.iaax.aws;
+package com.gabrielaraujo.iaax.modules.aws;
 
-import com.gabrielaraujo.iaax.aws.tags.EC2;
+import com.gabrielaraujo.iaax.modules.aws.tags.EC2;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

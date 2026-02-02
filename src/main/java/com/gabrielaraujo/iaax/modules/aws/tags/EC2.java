@@ -1,4 +1,4 @@
-package com.gabrielaraujo.iaax.aws.tags;
+package com.gabrielaraujo.iaax.modules.aws.tags;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

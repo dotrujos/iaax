@@ -3,7 +3,6 @@ package com.gabrielaraujo.iaax.tags;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.gabrielaraujo.iaax.aws.tags.Vpc;
 import lombok.Getter;
 import lombok.Setter;
 

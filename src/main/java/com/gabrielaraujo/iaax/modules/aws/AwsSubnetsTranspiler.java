@@ -1,11 +1,9 @@
-package com.gabrielaraujo.iaax.aws;
+package com.gabrielaraujo.iaax.modules.aws;
 
-import com.gabrielaraujo.iaax.aws.tags.Subnet;
-import com.gabrielaraujo.iaax.aws.tags.Vpc;
+import com.gabrielaraujo.iaax.modules.aws.tags.Subnet;
+import com.gabrielaraujo.iaax.modules.aws.tags.Vpc;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AwsSubnetsTranspiler {

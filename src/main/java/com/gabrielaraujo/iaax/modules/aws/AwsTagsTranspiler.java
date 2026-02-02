@@ -1,6 +1,6 @@
-package com.gabrielaraujo.iaax.aws;
+package com.gabrielaraujo.iaax.modules.aws;
 
-import com.gabrielaraujo.iaax.aws.tags.Tag;
+import com.gabrielaraujo.iaax.modules.aws.tags.Tag;
 
 import java.util.List;
 

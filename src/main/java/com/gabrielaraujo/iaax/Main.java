@@ -1,9 +1,9 @@
 package com.gabrielaraujo.iaax;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.gabrielaraujo.iaax.aws.AwsInfrastructure;
-import com.gabrielaraujo.iaax.aws.AwsTranspiler;
-import com.gabrielaraujo.iaax.aws.tags.Vpc;
+import com.gabrielaraujo.iaax.modules.aws.AwsInfrastructure;
+import com.gabrielaraujo.iaax.modules.aws.AwsTranspiler;
+import com.gabrielaraujo.iaax.modules.aws.tags.Vpc;
 import com.gabrielaraujo.iaax.registries.IaaxVariablesRegistry;
 import com.gabrielaraujo.iaax.tags.Infrastructure;
 

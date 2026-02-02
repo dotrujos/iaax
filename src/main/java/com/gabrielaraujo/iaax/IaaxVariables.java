@@ -1,11 +1,8 @@
 package com.gabrielaraujo.iaax;
 
-import com.gabrielaraujo.iaax.aws.AwsInfrastructure;
 import com.gabrielaraujo.iaax.tags.Infrastructure;
 import com.gabrielaraujo.iaax.tags.Variable;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
