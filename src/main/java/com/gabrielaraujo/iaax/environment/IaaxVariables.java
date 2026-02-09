@@ -1,4 +1,4 @@
-package com.gabrielaraujo.iaax;
+package com.gabrielaraujo.iaax.environment;
 
 import com.gabrielaraujo.iaax.tags.Infrastructure;
 import com.gabrielaraujo.iaax.tags.Variable;

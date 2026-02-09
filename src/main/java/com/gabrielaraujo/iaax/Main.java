@@ -6,7 +6,7 @@ import com.gabrielaraujo.iaax.commands.registries.IaaxCommandsControllerRegistry
 import com.gabrielaraujo.iaax.modules.aws.AwsInfrastructure;
 import com.gabrielaraujo.iaax.modules.aws.AwsTranspiler;
 import com.gabrielaraujo.iaax.modules.aws.tags.AwsVpc;
-import com.gabrielaraujo.iaax.registries.IaaxVariablesRegistry;
+import com.gabrielaraujo.iaax.environment.registries.IaaxVariablesRegistry;
 import com.gabrielaraujo.iaax.tags.Infrastructure;
 
 import java.io.IOException;

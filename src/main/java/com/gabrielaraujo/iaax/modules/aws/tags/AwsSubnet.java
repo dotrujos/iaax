@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.gabrielaraujo.iaax.registries.IaaxVariablesRegistry;
+import com.gabrielaraujo.iaax.environment.registries.IaaxVariablesRegistry;
 import lombok.Getter;
 import lombok.Setter;
 
