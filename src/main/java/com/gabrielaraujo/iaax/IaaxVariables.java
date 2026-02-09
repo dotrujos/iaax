@@ -22,7 +22,8 @@ public class IaaxVariables {
                         (variable.getKey() != null && !variable.getKey().isEmpty()) &&
                                 (variable.getValue() != null && !variable.getValue().isEmpty())
                 ) {
-                    variables.put(variable.getKey(), variable.getValue());
+                    var key = String.format("{{%s}}", variable.getKey());
+                    variables.put(key, variable.getValue());
                 }
             }
         }
@@ -30,6 +31,11 @@ public class IaaxVariables {
 
     public Boolean hasVariables() {
         return !variables.isEmpty();
+    }
+
+    public Boolean haveVariable(String key) {
+        String value = getVariable(key);
+        return value != null && !value.isEmpty();
     }
 
     public String getVariable(String key) {

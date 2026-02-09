@@ -7,7 +7,9 @@
     </iaax:provider>
 
     <iaax:environment>
-        <iaax:variable key="Hello">World</iaax:variable>
+        <iaax:variable key="PublicSubnetName">public_subnet</iaax:variable>
+        <iaax:variable key="AwsInstanceType">t3.medium</iaax:variable>
+        <iaax:variable key="AwsAmi">ami-04b70fa74e45c3917</iaax:variable>
     </iaax:environment>
 
     <aws:vpc cidr="10.0.0.0/16" region="us-east-1" name="vpc_prd" alias="us_east">
@@ -24,7 +26,17 @@
             <aws:ami>ami-04b70fa74e45c3917</aws:ami>
             <aws:subnet-name>public_subnet</aws:subnet-name>
             <aws:tags>
-                <aws:tag key="Name" value="MyWebServer" />
+                <aws:tag key="Name" value="MyWebServer_1" />
+                <aws:tag key="Environment" value="Dev" />
+            </aws:tags>
+        </aws:ec2>
+
+        <aws:ec2 name="web_server_02">
+            <aws:instance-type>{{AwsInstanceType}}</aws:instance-type>
+            <aws:ami>{{AwsAmi}}</aws:ami>
+            <aws:subnet-name>{{PublicSubnetName}}</aws:subnet-name>
+            <aws:tags>
+                <aws:tag key="Name" value="MyWebServer_2" />
                 <aws:tag key="Environment" value="Dev" />
             </aws:tags>
         </aws:ec2>

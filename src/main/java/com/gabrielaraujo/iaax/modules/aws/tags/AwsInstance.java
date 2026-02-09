@@ -3,12 +3,12 @@ package com.gabrielaraujo.iaax.modules.aws.tags;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.gabrielaraujo.iaax.registries.IaaxVariablesRegistry;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
-@Getter
 @Setter
 @JacksonXmlRootElement(localName = "ec2", namespace = "aws")
 public class AwsInstance {
@@ -25,7 +25,40 @@ public class AwsInstance {
     @JacksonXmlProperty(localName = "subnet-name", namespace = "aws")
     private String subnetName;
 
+    @Getter
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JacksonXmlProperty(localName = "tags", namespace = "aws")
     private List<AwsTag> awsTags;
+
+    public String getName() {
+        if (IaaxVariablesRegistry.SINGLETON.haveVariable(name)) {
+            return IaaxVariablesRegistry.SINGLETON.getVariable(name);
+        }
+
+        return name;
+    }
+
+    public String getInstanceType() {
+        if (IaaxVariablesRegistry.SINGLETON.haveVariable(instanceType)) {
+            return IaaxVariablesRegistry.SINGLETON.getVariable(instanceType);
+        }
+
+        return instanceType;
+    }
+
+    public String getAmi() {
+        if (IaaxVariablesRegistry.SINGLETON.haveVariable(ami)) {
+            return IaaxVariablesRegistry.SINGLETON.getVariable(ami);
+        }
+
+        return ami;
+    }
+
+    public String getSubnetName() {
+        if (IaaxVariablesRegistry.SINGLETON.haveVariable(subnetName)) {
+            return IaaxVariablesRegistry.SINGLETON.getVariable(subnetName);
+        }
+
+        return subnetName;
+    }
 }

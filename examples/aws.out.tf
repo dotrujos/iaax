@@ -1,4 +1,4 @@
-// Generated at 2026-01-31T05:09:32.501528900-03:00 with IaaX <github.com/dotrujos/iaax>
+// Generated at 2026-02-09T15:03:58.105126400-03:00 with IaaX <github.com/dotrujos/iaax>
 terraform {
 required_providers {
 aws {
@@ -40,7 +40,19 @@ provider = aws.us_east
 
 subnet_id = aws_subnet.public_subnet.id
 tags = {
-Name = "MyWebServer"
+Name = "MyWebServer_1"
+Environment = "Dev"
+}
+}
+
+resource "aws_instance" "web_server_02" { 
+instance_type = "t3.medium"
+ami = "ami-04b70fa74e45c3917"
+provider = aws.us_east
+
+subnet_id = aws_subnet.public_subnet.id
+tags = {
+Name = "MyWebServer_2"
 Environment = "Dev"
 }
 }
